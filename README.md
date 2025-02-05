@@ -13,7 +13,7 @@ To install this container, add it as a docker-compose service with the following
 
     services:
       backup:
-        image: ghcr.io/woganmay/backup-box:latest
+        image: ghcr.io/woganmay/backup-box:main
         volumes:
           - storage-data:/storage
           - backup-data:/backups
