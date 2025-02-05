@@ -22,8 +22,9 @@ To install this container, add it as a docker-compose service with the following
           - POSTGRES_DB=your_database
           - POSTGRES_USER=your_user
           - POSTGRES_PASSWORD=your_password
-          - AZURE_STORAGE_CONNECTION_STRING=your_connection_string
+          - AZURE_STORAGE_ACCOUNT=your_account_name
           - AZURE_CONTAINER_NAME=your_container_name
+          - AZURE_STORAGE_SAS_TOKEN=your_sas_token
         depends_on:
           - db
 
