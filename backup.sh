@@ -19,7 +19,8 @@ PGPASSWORD=$POSTGRES_PASSWORD pg_dump -h $POSTGRES_HOST -U $POSTGRES_USER $POSTG
 
 # Upload to Azure Storage
 echo "Uploading backups to Azure Storage..."
-azcopy copy "$BACKUP_DIR/*_$TIMESTAMP.tar.gz" "$AZURE_STORAGE_CONNECTION_STRING/$AZURE_CONTAINER_NAME/"
+azcopy copy "$BACKUP_DIR/storage_$TIMESTAMP.tar.gz" "https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_CONTAINER_NAME}/" --from-to=LocalBlob
+azcopy copy "$BACKUP_DIR/database_$TIMESTAMP.tar.gz" "https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_CONTAINER_NAME}/" --from-to=LocalBlob
 
 # Cleanup old backups (keep last 7 days)
 find "$BACKUP_DIR" -type f -mtime +7 -name "*.tar.gz" -delete
